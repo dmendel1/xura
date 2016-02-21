@@ -1,0 +1,18 @@
+
+- hosts: localhost
+  tasks:
+    - name: Install Git
+      become: yes
+      become_method: sudo
+      yum: name=git state=latest
+
+    - name: clone xura
+      git: repo=https://github.com/dmendel1/xura.git dest=xura update=no
+
+    - name: clone David pet
+      git: repo=https://github.com/dmendel1/spring-petclinic.git dest=spring-petclinic update=no
+    - name: Creates directory
+      file: path=~/build2 state=directory
+
+    - name: copy Dockerfile
+      copy: src=~/xura/Dockerfile dest=~/build2/
