@@ -1,5 +1,14 @@
 - hosts: localhost
   sudo: yes
   tasks:
-    - name: build docker
+    - name: build image docker
       docker_image: path="/home/ec2-user/build" name="docker_image" state=present
+    - name: run build image
+      docker:
+        name: mydocker
+        image: docker_image
+        state: started
+        expose:
+        - 8080
+        ports:
+        - "9090:8080"  
