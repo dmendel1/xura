@@ -1,0 +1,5 @@
+- hosts: localhost
+  sudo: yes
+  tasks:
+    - name: build docker
+      docker_image: path="/home/ec2-user/build" name="docker_image" state=present
